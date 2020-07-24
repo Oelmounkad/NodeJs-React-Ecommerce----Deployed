@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from './components/layout/Navbar';
+import Bar from './components/layout/Bar';
 
 import {BrowserRouter as Router , Switch, Route } from 'react-router-dom';
 import Home from './components/pages/Home';
@@ -7,12 +7,14 @@ import Home from './components/pages/Home';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
+import AuthState from './context/auth/AuthState';
 
 function App() {
   return (
+    <AuthState>
     <Router>
     <>
-        <Navbar />
+        <Bar />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
@@ -20,6 +22,7 @@ function App() {
         </Switch>
     </>
     </Router>
+    </AuthState>
   );
 }
 

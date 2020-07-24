@@ -1,16 +1,16 @@
 import React from 'react'
 import {Navbar,Nav} from 'react-bootstrap';
 
- const Navbarr = () => {
+ const Bar = () => {
     return (
         <>
 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-  <Navbar.Brand href="/">React-Bootstrap</Navbar.Brand>
+    <Navbar.Brand href="/"><i className="fas fa-dumpster" />{' '}Ecommerce</Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="mr-auto">
-      <Nav.Link href="#features">Features</Nav.Link>
-      <Nav.Link href="#pricing">Pricing</Nav.Link>
+      <Nav.Link href="#features">my Products</Nav.Link>
+      <Nav.Link href="#pricing">My cart</Nav.Link>
     </Nav>
     <Nav>
       <Nav.Link href="/register">Register</Nav.Link>
@@ -24,4 +24,4 @@ import {Navbar,Nav} from 'react-bootstrap';
     )
 }
 
-export default Navbarr
+export default Bar
