@@ -1,19 +1,26 @@
-import React,{useState,useContext} from 'react'
+import React, {useState,useContext,useEffect} from 'react'
 
 import AuthContext from '../../context/auth/AuthContext'
-
- const Register = () => {
+const Register = (props) => {
 
     const authContext = useContext(AuthContext)
-    const {register} = authContext
+
+    useEffect(() => {
+
+        if(authContext.isAuthenticated){
+            props.history.push('/')
+        }
+
+        // eslint-disable-next-line
+    },[authContext.isAuthenticated,props.history])
+
 
     const [user,setUser] = useState({
         name: '',
-        email:'',
-        password:'',
-        password2:''
+        email: '',
+        password: '',
+        password2: ''
     })
-    // Destructuring user
     const {name,email,password,password2} = user
 
     const onChange = e => {
@@ -23,40 +30,37 @@ import AuthContext from '../../context/auth/AuthContext'
     }
     const onSubmit = e => {
         e.preventDefault()
-        console.log(user)
-        register(user)
-
+     
+            authContext.register(user)
+       
     }
 
     return (
-        <form onSubmit={onSubmit}>
-        <h3>Sign Up</h3>
-
-        <div className="form-group">
-            <label>Name</label>
-            <input type="text" className="form-control" name="name" placeholder="Name" value={name} onChange={onChange} />
+        <div className="form-container">
+            <h1>
+                Account <span className="text-primary">Register</span>
+            </h1>
+            <form onSubmit={onSubmit}>
+                <div className="form-group">
+                    <label htmlFor="name">Name</label>
+                    <input type="text" name="name" value={name} onChange={onChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="email">Email</label>
+                    <input type="email" name="email" value={email} onChange={onChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="password">Password</label>
+                    <input type="password" name="password" value={password} onChange={onChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="password2">Re-type Password</label>
+                    <input type="password" name="password2" value={password2} onChange={onChange} />
+                </div>
+                <input type="submit" value="Register" className="btn btn-primary btn-block" />
+            </form>
         </div>
-
-        <div className="form-group">
-            <label>Email address</label>
-            <input type="email" className="form-control" name="email" placeholder="Enter email" value={email} onChange={onChange} />
-        </div>
-
-        <div className="form-group">
-            <label>Password</label>
-            <input type="password" className="form-control" name="password" placeholder="Enter password" value={password} onChange={onChange} />
-        </div>
-
-        <div className="form-group">
-            <label>Re-type Password</label>
-            <input type="password" className="form-control" name="password2" placeholder="Re-enter password" value={password2} onChange={onChange} />
-        </div>
-
-        <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
-        <p className="forgot-password text-right">
-            Already registered <a href="#">sign in?</a>
-        </p>
-    </form>
     )
 }
-export default Register
+
+export default Register 
