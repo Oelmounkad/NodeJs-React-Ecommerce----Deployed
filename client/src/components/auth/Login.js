@@ -8,7 +8,7 @@ const Login = (props) => {
     useEffect(() => {
 
         if(authContext.isAuthenticated){
-            props.history.push('/')
+            props.history.push('/myproducts')
         }
         
 

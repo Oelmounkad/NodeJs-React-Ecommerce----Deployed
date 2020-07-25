@@ -1,7 +1,8 @@
 import React,{useContext} from 'react'
 import {Navbar,Nav} from 'react-bootstrap';
-
 import AuthContext from '../../context/auth/AuthContext'
+import {Link} from 'react-router-dom'
+import About from '../pages/About';
 
  const Bar = () => {
 
@@ -14,28 +15,27 @@ import AuthContext from '../../context/auth/AuthContext'
 
     const authLinks = (
       <>
-     <p>Hello {user && user.name}</p> 
-        <Nav.Link onClick={onLogout}><i className="fas fa-sign-out-alt" /> Logout</Nav.Link>
+     <Link to="/about">Hello {user && user.name}</Link> 
+        <Link to="" onClick={onLogout}><i className="fas fa-sign-out-alt" /> Logout</Link>
       </>
     )
     const guestLinks = (
       <>
-      <Nav.Link href="/register">Register</Nav.Link>
-      <Nav.Link eventKey={2} href="/login">
-        Login
-      </Nav.Link>
+      <Link to="/register">Register</Link>
+      <Link to="/login">Login</Link>
       </>
     )
 
     return (
         <>
 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-    <Navbar.Brand href="/"><i className="fas fa-dumpster" />{' '}Ecommerce</Navbar.Brand>
+    <Navbar.Brand><i className="fas fa-dumpster" />{' '}Ecommerce</Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="mr-auto">
-      <Nav.Link href="#features">my Products</Nav.Link>
-      <Nav.Link href="#pricing">My cart</Nav.Link>
+    <Link to="/browse">Browse Products</Link>
+      <Link to="/myproducts">my Products</Link>
+      <Link to="/mycart">My cart</Link>
     </Nav>
     <Nav>
      { isAuthenticated ?  authLinks : guestLinks}
