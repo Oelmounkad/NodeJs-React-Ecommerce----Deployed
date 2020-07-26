@@ -2,6 +2,7 @@ import React,{useEffect,useContext} from 'react'
 import {Container, Row} from 'react-bootstrap'
 import ProductContext from '../../context/product/ProductContext'
 import Product from '../product/Product'
+import ProductForm from '../product/ProductForm'
 
  const MyProducts = () => {
 
@@ -26,7 +27,7 @@ useEffect(() => {
                </div>
            
            <div className="col-md-4">
-               2
+               <ProductForm />
            </div> 
            </div>
         </div>

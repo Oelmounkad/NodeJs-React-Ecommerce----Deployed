@@ -1,7 +1,8 @@
 import {
 GET_PRODUCTS,
 CLEAR_PRODUCTS,
-PRODUCT_ERROR
+PRODUCT_ERROR,
+ADD_PRODUCT
 } from '../types'
 
 export default (state,action) => {
@@ -11,6 +12,11 @@ export default (state,action) => {
             return {
                 ...state,
                 products: action.payload
+            }
+            case ADD_PRODUCT:
+            return {
+                ...state,
+                products: [ action.payload,...state.products]
             }
         default:
             return state

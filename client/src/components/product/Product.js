@@ -4,7 +4,7 @@ import {Card} from 'react-bootstrap'
 
 const Product = ({product}) => {
     return (
-        <div class="col-md-6 col-md-offset-2"> 
+        <div className="col-md-6 col-md-offset-2"> 
 
 <Card style={{ width: '18rem' }}>
   <Card.Body>

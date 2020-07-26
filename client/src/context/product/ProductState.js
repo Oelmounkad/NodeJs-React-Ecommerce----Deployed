@@ -9,14 +9,19 @@ GET_PRODUCTS,
 CLEAR_PRODUCTS,
 FILTER_PRODUCTS,
 CLEAR_FILTER,
-PRODUCT_ERROR
+PRODUCT_ERROR,
+CLEAR_CURRENT,
+SET_CURRENT,
+ADD_PRODUCT
+
 } from '../types'
 
  const ProductState = props => {
 
     const initialState = {
         products: [],
-        filtered: null
+        filtered: null,
+        current: null
     }
 
     const [state, dispatch] = useReducer(ProductReducer, initialState)
@@ -40,13 +45,43 @@ PRODUCT_ERROR
         }
    }
 
+     // Add a product
+     const addProduct = async data => {
+        try {
+            const res = await axios.post('/api/products',data)
+            dispatch({
+                type: ADD_PRODUCT,
+                payload: res.data
+            })
+        } catch (err) {
+            dispatch({
+                type: PRODUCT_ERROR,
+                payload: err.response.data
+            })
+        }
+   }
+
+   // Set Current Product
+
+   const setCurrent = product => {
+    dispatch({type: SET_CURRENT, payload: product})
+}
+
+   // Clear Current Product
+   const clearCurrent = () => {
+    dispatch({type: CLEAR_CURRENT })
+}
 
     return (
         <ProductContext.Provider
         value={{
             products: state.products,
             filtered: state.filtered,
-            getProducts
+            current: state.current,
+            getProducts,
+            addProduct,
+            setCurrent,
+            clearCurrent
         }}
         >
             {props.children}
