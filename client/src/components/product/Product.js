@@ -1,8 +1,13 @@
-import React from 'react'
-import {Card} from 'react-bootstrap'
-
+import React,{useContext} from 'react'
+import {Card,Button} from 'react-bootstrap'
+import ProductContext from '../../context/product/ProductContext'
 
 const Product = ({product}) => {
+
+  const productContext = useContext(ProductContext)
+  const {setCurrent} = productContext
+
+
     return (
         <div className="col-md-6 col-md-offset-2"> 
 
@@ -13,8 +18,7 @@ const Product = ({product}) => {
     <Card.Text>
     {product.description}
     </Card.Text>
-    <Card.Link href="#">Delete</Card.Link>
-    <Card.Link href="#">Edit</Card.Link>
+    <button onClick={() => setCurrent(product)}>Edit</button>
   </Card.Body>
 </Card>
 </div>

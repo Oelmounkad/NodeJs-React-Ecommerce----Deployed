@@ -1,12 +1,27 @@
 import React,{useContext,useState,useEffect} from 'react'
 import ProductContext from '../../context/product/ProductContext'
+import { CLEAR_CURRENT } from '../../context/types'
 
 
  const ProductForm = () => {
 
-    const productContext = useContext(ProductContext)
-    const {current,setCurrent,clearCurrent,addProduct} = productContext
 
+    const productContext = useContext(ProductContext)
+    const {current,updateProduct,clearCurrent,addProduct} = productContext
+
+    useEffect(() => {
+        if(current != null){
+         setProduct(current)
+        }else{
+         setProduct({
+             name: '',
+             description: '',
+             price: '',
+             quantity: ''
+         })
+        }
+     }, [productContext,current]);
+    
     const [product, setProduct] = useState({
         name: '',
         description: '',
@@ -16,22 +31,29 @@ import ProductContext from '../../context/product/ProductContext'
 
 const { name, description, quantity, price } = product;
 
+const clearAll = () => {
+    clearCurrent()
+}
     const onChange = e => {
         setProduct({...product, [e.target.name] : e.target.value })
     }
 
     const onSubmit = e => {
         e.preventDefault()
-        console.log(product)
-        addProduct(product)
 
+       if(current !== null){
+        updateProduct(product)
+       }else{
+           addProduct(product)
+       } 
+        clearAll()
     }
 
     
 
     return (
 <form onSubmit={onSubmit}>
-  <h2 className="text-primary">Add Contact</h2>
+    <h2 className="text-primary">{ current ? 'Edit Contact' : 'Add Contact' }</h2>
 
 <input type="text" 
 placeholder="name" 
@@ -57,7 +79,7 @@ name="quantity"
 value={quantity} 
 onChange={onChange}/>
 <div>
-    <input type="submit" value='Add Contact' className="btn btn-primary btn-block"/>
+    <input type="submit" value={current ? 'Edit Product' : 'Add Product'} className="btn btn-primary btn-block"/>
 </div>
 
 </form>

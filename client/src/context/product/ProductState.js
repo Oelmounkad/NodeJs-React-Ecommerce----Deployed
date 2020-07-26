@@ -12,7 +12,8 @@ CLEAR_FILTER,
 PRODUCT_ERROR,
 CLEAR_CURRENT,
 SET_CURRENT,
-ADD_PRODUCT
+ADD_PRODUCT,
+UPDATE_PRODUCT
 
 } from '../types'
 
@@ -61,6 +62,24 @@ ADD_PRODUCT
         }
    }
 
+
+    // Update a product
+    const updateProduct = async product => {
+        try {
+            const res = await axios.put(`/api/products/${product._id}`,product)
+            dispatch({
+                type: UPDATE_PRODUCT,
+                payload: res.data
+            })
+        } catch (err) {
+            dispatch({
+                type: PRODUCT_ERROR,
+                payload: err.response.data
+            })
+        }
+   }
+
+
    // Set Current Product
 
    const setCurrent = product => {
@@ -80,6 +99,7 @@ ADD_PRODUCT
             current: state.current,
             getProducts,
             addProduct,
+            updateProduct,
             setCurrent,
             clearCurrent
         }}
