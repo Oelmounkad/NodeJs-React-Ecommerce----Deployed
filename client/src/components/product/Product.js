@@ -13,9 +13,12 @@ const Product = ({product}) => {
 <Card style={{ width: '18rem' }}>
   <Card.Body>
     <Card.Title>{product.name}</Card.Title>
-    <Card.Subtitle className="mb-2 text-muted">{product.name}</Card.Subtitle>
+    <Card.Subtitle className="mb-2 text-muted">{product.name} is a {product.description}</Card.Subtitle>
     <Card.Text>
-    {product.description}
+    Available : {product.quantity}
+    </Card.Text>
+    <Card.Text>
+     {product.price} €
     </Card.Text>
     <button type="button" className="btn btn-warning" onClick={() => setCurrent(product)}>Edit</button>
     <button type="button" className="btn btn-danger" onClick={() => deleteProduct(product._id)}>Delete</button>

@@ -52,39 +52,44 @@ const clearAll = () => {
     
 
     return (
-<form onSubmit={onSubmit}>
-    <h2 className="text-primary">{ current ? 'Edit Contact' : 'Add Contact' }</h2>
+<form className="form-group" onSubmit={onSubmit}>
+    <h2 className={current ? 'text-warning' :'text-primary' } >{ current ? 'Edit Product' : 'Add Product' }</h2>
 
 <input type="text" 
 placeholder="name" 
 name="name" 
 value={name} 
+className="form-control"
 onChange={onChange}/>
 
 <input type="text" 
 placeholder="description" 
 name="description" 
-value={description} 
+value={description}
+className="form-control" 
 onChange={onChange}/>
 
 <input type="text" 
 placeholder="price" 
 name="price" 
 value={price} 
+className="form-control"
 onChange={onChange}/>
 
 <input type="text" 
 placeholder="quantity" 
 name="quantity" 
 value={quantity} 
+className="form-control"
 onChange={onChange}/>
 <div>
-    <input type="submit" value={current ? 'Edit Product' : 'Add Product'} className="btn btn-primary btn-block"/>
+    <input type="submit" value={current ? 'Edit Product' : 'Add Product'} className={`btn btn-${current ? 'warning' : 'primary'} btn-block`} />
 </div>
 {current && <button className="btn btn-light btn-block" onClick={clearAll}> Clear </button>}
 
 
 </form>
+
     )
 }
 export default ProductForm

@@ -31,6 +31,7 @@ function App() {
           <Route exact path="/about" component={About} />
           <Route exact path="/register" component={Register} />
           <PrivateRoute exact path="/myproducts" component={MyProducts} />
+          <PrivateRoute exact path="/mycart" component={MyProducts} />
         </Switch>
     </>
     </Router>
