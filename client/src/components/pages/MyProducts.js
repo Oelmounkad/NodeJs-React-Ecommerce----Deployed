@@ -1,5 +1,5 @@
 import React,{useEffect,useContext} from 'react'
-import {Container, Row} from 'react-bootstrap'
+import {Spinner} from 'react-bootstrap'
 import ProductContext from '../../context/product/ProductContext'
 import Product from '../product/Product'
 import ProductForm from '../product/ProductForm'
@@ -20,7 +20,13 @@ useEffect(() => {
            <div className="row">
                <div className="col">
                    <div className="row">
-                       {products && products.map(product => <Product key={product._id} product={product}></Product> ) }
+                  {products !== null ? products.map(product => <Product key={product._id} product={product}></Product> ) :
+                   <div style={{
+                   position: 'absolute', left: '50%', top: '50%',
+                   transform: 'translate(-50%, -50%)'
+                   }}>
+                      <Spinner animation="border" variant="primary" />
+                  </div>  }
             
                    </div>
                  

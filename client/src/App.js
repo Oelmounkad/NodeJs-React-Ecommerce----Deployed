@@ -26,11 +26,11 @@ function App() {
     <>
         <Bar />
         <Switch>
-          <PrivateRoute exact path="/" component={Home} />
+          <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/about" component={About} />
           <Route exact path="/register" component={Register} />
-          <Route exact path="/myproducts" component={MyProducts} />
+          <PrivateRoute exact path="/myproducts" component={MyProducts} />
         </Switch>
     </>
     </Router>

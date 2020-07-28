@@ -7,7 +7,7 @@ import AuthContext from '../../context/auth/AuthContext'
   const  authContext = useContext(AuthContext)
 
     return (
-        <Route {...rest } render={props => !authContext.isAuthenticated && !authContext.loading ? (
+        <Route {...rest } render={props => !authContext.isAuthenticated ? (
             <Redirect to='/login' />
         ) : (
             <Component  {...props} />

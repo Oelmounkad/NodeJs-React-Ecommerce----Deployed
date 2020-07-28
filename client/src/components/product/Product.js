@@ -1,16 +1,15 @@
 import React,{useContext} from 'react'
-import {Card,Button} from 'react-bootstrap'
+import {Card,Spinner} from 'react-bootstrap'
 import ProductContext from '../../context/product/ProductContext'
 
 const Product = ({product}) => {
 
   const productContext = useContext(ProductContext)
-  const {setCurrent} = productContext
+  const {setCurrent,deleteProduct} = productContext
 
 
     return (
-        <div className="col-md-6 col-md-offset-2"> 
-
+    <div className="col-md-6 col-md-offset-2"> 
 <Card style={{ width: '18rem' }}>
   <Card.Body>
     <Card.Title>{product.name}</Card.Title>
@@ -18,10 +17,13 @@ const Product = ({product}) => {
     <Card.Text>
     {product.description}
     </Card.Text>
-    <button onClick={() => setCurrent(product)}>Edit</button>
-  </Card.Body>
+    <button type="button" className="btn btn-warning" onClick={() => setCurrent(product)}>Edit</button>
+    <button type="button" className="btn btn-danger" onClick={() => deleteProduct(product._id)}>Delete</button>
+ </Card.Body>
 </Card>
-</div>
+</div> 
+    
+       
 
     )
 }

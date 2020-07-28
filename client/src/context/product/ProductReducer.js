@@ -5,7 +5,8 @@ PRODUCT_ERROR,
 ADD_PRODUCT,
 SET_CURRENT,
 CLEAR_CURRENT,
-UPDATE_PRODUCT
+UPDATE_PRODUCT,
+DELETE_PRODUCT
 } from '../types'
 
 export default (state,action) => {
@@ -25,6 +26,11 @@ export default (state,action) => {
                 return {
                     ...state,
                     products: state.products.map(prod => prod._id === action.payload._id ? prod = action.payload : prod = prod)
+                }
+            case DELETE_PRODUCT:
+                return {
+                    ...state,
+                    products: state.products.filter(prod => prod._id !== action.payload)
                 }
             case SET_CURRENT:
             return {

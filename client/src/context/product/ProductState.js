@@ -13,14 +13,15 @@ PRODUCT_ERROR,
 CLEAR_CURRENT,
 SET_CURRENT,
 ADD_PRODUCT,
-UPDATE_PRODUCT
+UPDATE_PRODUCT,
+DELETE_PRODUCT
 
 } from '../types'
 
  const ProductState = props => {
 
     const initialState = {
-        products: [],
+        products: null,
         filtered: null,
         current: null
     }
@@ -79,6 +80,21 @@ UPDATE_PRODUCT
         }
    }
 
+ // Delete a product
+    const deleteProduct = async id => {
+        try {
+            const res = await axios.delete(`/api/products/${id}`)
+            dispatch({
+                type: DELETE_PRODUCT,
+                payload: id
+            })
+        } catch (err) {
+            dispatch({
+                type: PRODUCT_ERROR,
+                payload: err.response.data
+            })
+        }
+   }
 
    // Set Current Product
 
@@ -100,6 +116,7 @@ UPDATE_PRODUCT
             getProducts,
             addProduct,
             updateProduct,
+            deleteProduct,
             setCurrent,
             clearCurrent
         }}

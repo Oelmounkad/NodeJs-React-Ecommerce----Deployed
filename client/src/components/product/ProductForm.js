@@ -81,6 +81,8 @@ onChange={onChange}/>
 <div>
     <input type="submit" value={current ? 'Edit Product' : 'Add Product'} className="btn btn-primary btn-block"/>
 </div>
+{current && <button className="btn btn-light btn-block" onClick={clearAll}> Clear </button>}
+
 
 </form>
     )
