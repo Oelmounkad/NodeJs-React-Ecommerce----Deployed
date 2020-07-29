@@ -22,4 +22,7 @@ app.use('/api/auth',require('./routes/auth'))
 app.use('/api/products',require('./routes/products'))
 
 
+// cart
+app.use('/api/cart',require('./routes/cart'))
+
 app.listen(PORT, () => console.log(`Server started on port : ${PORT}`))

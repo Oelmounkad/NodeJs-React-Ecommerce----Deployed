@@ -22,7 +22,7 @@ router.get('/all', async (req,res) => {
 
 
 // @route   GET api/products
-// @desc    Get all products in the Database
+// @desc    Get Product by id
 // @access  Private
 
 router.get('/:id', async (req,res) => {
