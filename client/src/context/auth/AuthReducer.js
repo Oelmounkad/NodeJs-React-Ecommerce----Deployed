@@ -25,10 +25,11 @@ export default (state,action) => {
                 ...action.payload,
                 isAuthenticated: true
             }
+            case LOGOUT:
             case REGISTER_FAIL:
             case AUTH_ERROR:
             case LOGIN_FAIL:
-            case LOGOUT:
+            
             localStorage.removeItem('token')
             return {
                 ...state,

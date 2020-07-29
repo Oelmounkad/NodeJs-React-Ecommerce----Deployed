@@ -1,17 +1,24 @@
-import React,{useContext} from 'react'
+import React,{useContext,useEffect} from 'react'
 import {Navbar,Nav} from 'react-bootstrap';
 import AuthContext from '../../context/auth/AuthContext'
+import ProductContext from '../../context/product/ProductContext'
 import {Link} from 'react-router-dom'
 import About from '../pages/About';
 
- const Bar = () => {
+ const Bar = (props) => {
+
+    const productContext = useContext(ProductContext)
+    const {clearProducts} = productContext
 
     const authContext = useContext(AuthContext)
     const {user,isAuthenticated, logout} = authContext 
 
+
     const onLogout = () => {
       logout()
+      clearProducts()
     }
+    
 
     const authLinks = (
       <>

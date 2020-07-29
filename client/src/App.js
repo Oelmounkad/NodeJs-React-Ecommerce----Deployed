@@ -13,6 +13,7 @@ import setAuthToken from './utils/setAuthToken'
 import PrivateRoute from './components/routing/PrivateRoute';
 import About from './components/pages/About';
 import MyProducts from './components/pages/MyProducts';
+import Browse from './components/pages/Browse';
 
 
 if(localStorage.token){
@@ -32,6 +33,7 @@ function App() {
           <Route exact path="/register" component={Register} />
           <PrivateRoute exact path="/myproducts" component={MyProducts} />
           <PrivateRoute exact path="/mycart" component={MyProducts} />
+          <Route exact path="/browse" component={Browse} />
         </Switch>
     </>
     </Router>

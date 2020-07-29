@@ -1,3 +1,5 @@
+export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
+
 export const GET_PRODUCTS = 'GET_PRODUCTS'
 export const CLEAR_PRODUCTS = 'CLEAR_PRODUCTS'
 export const ADD_PRODUCT = 'ADD_PRODUCT'
@@ -8,6 +10,7 @@ export const CLEAR_FILTER = 'CLEAR_FILTER'
 export const PRODUCT_ERROR = 'PRODUCT_ERROR'
 export const SET_ALERT = 'SET_ALERT'
 export const REMOVE_ALERT = 'REMOVE_ALERT'
+
 
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';

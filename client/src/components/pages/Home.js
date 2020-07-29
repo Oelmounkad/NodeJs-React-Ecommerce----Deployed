@@ -4,9 +4,6 @@ const Home = () => {
 
     const authContext = useContext(AuthContext)
 
-    useEffect(() => {  
-        authContext.loadUser()
-    }, [])
     return (
         <div className="grid-2">
            <div>

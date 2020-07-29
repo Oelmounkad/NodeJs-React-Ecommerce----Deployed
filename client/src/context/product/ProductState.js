@@ -14,16 +14,20 @@ CLEAR_CURRENT,
 SET_CURRENT,
 ADD_PRODUCT,
 UPDATE_PRODUCT,
-DELETE_PRODUCT
+DELETE_PRODUCT,
+GET_ALL_PRODUCTS
 
 } from '../types'
 
  const ProductState = props => {
 
     const initialState = {
+        allProducts: null,
         products: null,
         filtered: null,
-        current: null
+        current: null,
+        error: null,
+        loading: true
     }
 
     const [state, dispatch] = useReducer(ProductReducer, initialState)
@@ -31,7 +35,24 @@ DELETE_PRODUCT
 
     // Actions:
 
+
     // Get all products
+   const getAllProducts = async () => {
+    try {
+        const res = await axios.get('/api/products/all')
+        dispatch({
+            type: GET_ALL_PRODUCTS,
+            payload: res.data
+        })
+    } catch (err) {
+        dispatch({
+            type: PRODUCT_ERROR,
+            payload: err.response.data
+        })
+    }
+}
+
+    // Get all user's products
    const getProducts = async () => {
         try {
             const res = await axios.get('/api/products')
@@ -107,16 +128,29 @@ DELETE_PRODUCT
     dispatch({type: CLEAR_CURRENT })
 }
 
+// Clear products
+
+const clearProducts = () => {
+    dispatch({
+        type: CLEAR_PRODUCTS
+    })
+}
+
     return (
         <ProductContext.Provider
         value={{
+            allProducts: state.allProducts,
             products: state.products,
             filtered: state.filtered,
             current: state.current,
+            error: state.error,
+            loading: state.loading,
+            getAllProducts,
             getProducts,
             addProduct,
             updateProduct,
             deleteProduct,
+            clearProducts,
             setCurrent,
             clearCurrent
         }}

@@ -6,14 +6,48 @@ const auth = require('../middleware/auth')
 const Product = require('../models/Product') 
 const { update } = require('../models/Product')
 
+
+// @route   GET api/products
+// @desc    Get all products in the Database
+// @access  Private
+
+router.get('/all', async (req,res) => {
+     try {
+          const products = await Product.find().populate({path:'user',select:'name'})
+          res.json(products)
+     } catch (err) {
+          res.status(500).send('Server Error')
+     } 
+ })
+
+
+// @route   GET api/products
+// @desc    Get all products in the Database
+// @access  Private
+
+router.get('/:id', async (req,res) => {
+     try {
+          const product = await Product.findById(req.params.id).populate({path:'user',select:'name'})
+          if(!product) return res.status(404).send('Not found')
+          res.json(product)
+     } catch (err) {
+          res.status(500).send('Server Error')
+     } 
+ })
+
 // @route   GET api/products
 // @desc    Get all the users products
 // @access  Private
 
 router.get('/',auth, async (req,res) => {
     try {
-         const products = await Product.find({user: req.user.id})
-         res.json(products)
+         let products = await Product.find({user: req.user.id})
+         if(products.length === 0){
+              return res.status(404).send('You have no Products !')
+         } else{
+          res.json(products)
+         }
+         
     } catch (err) {
          res.status(500).send('Server Error')
     } 
