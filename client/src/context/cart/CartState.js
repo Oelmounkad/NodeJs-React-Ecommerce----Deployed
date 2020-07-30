@@ -7,7 +7,7 @@ import axios from 'axios'
 
 import {
     GET_CART_ITEMS,
-    DELETE_PRODUCT,
+    DELETE_CART_ITEM,
     ADD_CART_ITEM,
     CART_ERROR
 
@@ -55,7 +55,20 @@ const addToCart = async (data) => {
     
 }
 
+// Add item to user's cart 
 
+const deleteCartItem = async (id) => {
+        
+
+    const res = await axios.delete(`/api/cart/${id}`)
+
+    dispatch({
+        type: DELETE_CART_ITEM,
+        payload: id
+    })
+
+    
+}
 
 
 
@@ -66,7 +79,8 @@ const addToCart = async (data) => {
           error: state.error,
           loading: state.loading,
           getCartItems,
-          addToCart
+          addToCart,
+          deleteCartItem
         }}>
             {props.children}
         </CartContext.Provider>

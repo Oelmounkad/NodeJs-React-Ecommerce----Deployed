@@ -1,6 +1,12 @@
-import React from 'react'
+import React ,{useContext} from 'react'
+import CartContext from '../../context/cart/CartContext'
+
 
  const CartItem = ({item}) => {
+
+    const cartContext = useContext(CartContext)
+    const {deleteCartItem} = cartContext
+
     return (
         <>
        
@@ -26,7 +32,9 @@ import React from 'react'
                                      <div class="cart_item_color cart_info_col">
                                          <div class="cart_item_title">Action</div>
                                          <div class="cart_item_text">
-                                              <button className="btn btn-danger"><i class="fas fa-trash" /></button>
+                                              <button className="btn btn-danger" onClick={() => {
+                                                  deleteCartItem(item._id)
+                                              }}><i class="fas fa-trash" /></button>
                                               <button className="btn btn-success"><i class="far fa-check-circle"/></button>
                                                </div>
                                      </div>

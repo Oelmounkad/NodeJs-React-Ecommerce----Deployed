@@ -23,9 +23,9 @@ router.get('/', auth , async (req,res) => {
 
 
 
-// @route GET /api/cart
-// @desc Get all the items in the user's cart
-// @access Private
+// @route GET /api/cart/:id
+// @desc Get a cart item by id
+// @access Public
 
 router.get('/:id', async (req,res) => {
      try {
@@ -61,6 +61,30 @@ router.post('/',auth, async (req,res) => {
     } 
 })
 
+
+// @route DELETE /api/cart
+// @desc Get all the items in the user's cart
+// @access Private
+
+router.delete('/:id', auth ,async (req,res) => {
+     try {
+          const cartitem = await CartItem.findById(req.params.id)
+
+          if (!cartitem) return res.status(404).json({msg: 'Cart Item not found'});
+
+          //Verify if Cart item is owned by User
+          if(cartitem.user.toString() !== req.user.id){
+               return res.status(401).json({msg: 'Not authorized'});
+          }
+
+          await CartItem.findByIdAndRemove(req.params.id);
+
+          res.json({msg: 'Cart item removed'});
+
+     } catch (err) {
+          res.status(500).send('Server Error')
+     } 
+ })
 
 
 

@@ -19,7 +19,7 @@ export default (state,action) => {
         case DELETE_CART_ITEM:
             return{
                 ...state,
-                cart: state.cart.filter(c => c._id !== action.payload._id)
+                cart: state.cart.filter(c => c._id !== action.payload)
             }
         case ADD_CART_ITEM:
                 return{
