@@ -41,6 +41,21 @@ const [state, dispatch] = useReducer(CartReducer, initialState)
         
     }
 
+// Add item to user's cart 
+const addToCart = async (data) => {
+        
+
+    const res = await axios.post('/api/cart',data)
+
+    dispatch({
+        type: ADD_CART_ITEM,
+        payload: res.data
+    })
+
+    
+}
+
+
 
 
 
@@ -50,7 +65,8 @@ const [state, dispatch] = useReducer(CartReducer, initialState)
           cart: state.cart,
           error: state.error,
           loading: state.loading,
-          getCartItems
+          getCartItems,
+          addToCart
         }}>
             {props.children}
         </CartContext.Provider>

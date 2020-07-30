@@ -40,7 +40,7 @@ function App() {
           <Route exact path="/register" component={Register} />
           <PrivateRoute exact path="/myproducts" component={MyProducts} />
           <PrivateRoute exact path="/mycart" component={MyCart} />
-          <Route exact path="/browse" component={Browse} />
+          <PrivateRoute exact path="/browse" component={Browse} />
         </Switch>
     </>
     </Router>

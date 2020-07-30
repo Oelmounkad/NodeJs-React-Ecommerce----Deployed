@@ -1,6 +1,7 @@
 import React,{useEffect,useContext,useState} from 'react'
 import {Spinner} from 'react-bootstrap'
 import ProductContext from '../../context/product/ProductContext'
+import CartContext from '../../context/cart/CartContext'
 import Product from '../product/Product'
 import ProductForm from '../product/ProductForm'
 
@@ -10,9 +11,12 @@ import ProductForm from '../product/ProductForm'
     const productContext = useContext(ProductContext)
     const {getProducts,products,loading,error} = productContext
 
+    const cartContext = useContext(CartContext)
+    const {getCartItems} = cartContext
 
 useEffect(() => {
    getProducts()
+   getCartItems()
 }, []);
 
 

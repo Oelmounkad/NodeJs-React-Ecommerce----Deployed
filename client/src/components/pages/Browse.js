@@ -1,5 +1,6 @@
 import React,{useEffect,useContext} from 'react'
 import ProductContext from '../../context/product/ProductContext'
+import CartContext from '../../context/cart/CartContext'
 import Product from '../product/Product'
 import {Spinner} from 'react-bootstrap'
 
@@ -8,8 +9,12 @@ const Browse = () => {
     const productContext = useContext(ProductContext)
     const {getAllProducts,allProducts,loading} = productContext
 
+    const cartContext = useContext(CartContext)
+    const {getCartItems} = cartContext
+
 useEffect(() => {
     getAllProducts()
+    getCartItems()
 }, [])
 
     return (

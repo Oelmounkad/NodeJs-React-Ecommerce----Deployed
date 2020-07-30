@@ -5,7 +5,12 @@ import ProductContext from '../../context/product/ProductContext'
 import {Link} from 'react-router-dom'
 import About from '../pages/About';
 
+import CartContext from '../../context/cart/CartContext'
+
  const Bar = (props) => {
+
+    const cartContext = useContext(CartContext)
+    const {cart} = cartContext
 
     const productContext = useContext(ProductContext)
     const {clearProducts} = productContext
@@ -42,7 +47,7 @@ import About from '../pages/About';
     <Nav className="mr-auto">
     <Link to="/browse">Browse Products</Link>
       <Link to="/myproducts">my Products</Link>
-      <Link to="/mycart">My cart</Link>
+    <Link to="/mycart">My cart { cart !== null && <> ({ cart.length }) </> }</Link>
     </Nav>
     <Nav>
      { isAuthenticated ?  authLinks : guestLinks}
