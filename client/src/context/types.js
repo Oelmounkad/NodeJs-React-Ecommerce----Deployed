@@ -1,13 +1,21 @@
 export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
-
 export const GET_PRODUCTS = 'GET_PRODUCTS'
 export const CLEAR_PRODUCTS = 'CLEAR_PRODUCTS'
 export const ADD_PRODUCT = 'ADD_PRODUCT'
 export const DELETE_PRODUCT = 'DELETE_PRODUCT'
 export const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
 export const FILTER_PRODUCTS = 'FILTER_PRODUCTS'
-export const CLEAR_FILTER = 'CLEAR_FILTER'
 export const PRODUCT_ERROR = 'PRODUCT_ERROR'
+
+export const GET_CART_ITEMS = 'GET_CART_ITEMS'
+export const ADD_CART_ITEM = 'ADD_CART_ITEM'
+export const DELETE_CART_ITEM = 'DELETE_CART_ITEM'
+export const CART_ERROR = 'CART_ERROR'
+
+
+
+export const CLEAR_FILTER = 'CLEAR_FILTER'
+
 export const SET_ALERT = 'SET_ALERT'
 export const REMOVE_ALERT = 'REMOVE_ALERT'
 
