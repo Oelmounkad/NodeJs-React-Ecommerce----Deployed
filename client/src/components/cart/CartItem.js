@@ -40,6 +40,7 @@ import ProductContext from '../../context/product/ProductContext'
                                               }}><i class="fas fa-trash" /></button>
                                               <button className="btn btn-success" onClick={() => {
                                                   updateQuantityProduct(item.product._id,item.quantity)
+                                                  deleteCartItem(item._id)
                                               }}><i class="far fa-check-circle"/></button>
                                                </div>
                                      </div>
