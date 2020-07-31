@@ -136,6 +136,34 @@ const clearProducts = () => {
     })
 }
 
+
+// Updates product quantity in stock after purchase
+
+const updateQuantityProduct = async (id,quantity) => {
+    try {
+
+        const product = await axios.get(`/api/products/${id}`)
+
+        var newProductQuantity = product.data.quantity - quantity
+
+        var data = {
+            quantity: newProductQuantity
+        }
+
+        const res = await axios.put(`/api/products/all/${id}`,data)
+        
+        dispatch({
+            type: UPDATE_PRODUCT,
+            payload: res.data
+        })
+    } catch (err) {
+        dispatch({
+            type: PRODUCT_ERROR,
+            payload: err.response.data
+        })
+    }
+}
+
     return (
         <ProductContext.Provider
         value={{
@@ -152,7 +180,8 @@ const clearProducts = () => {
             deleteProduct,
             clearProducts,
             setCurrent,
-            clearCurrent
+            clearCurrent,
+            updateQuantityProduct
         }}
         >
             {props.children}

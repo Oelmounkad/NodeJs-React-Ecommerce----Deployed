@@ -121,6 +121,42 @@ router.put('/:id',auth, async (req,res) => {
     } 
 })
 
+// @route   PUT api/products/:id
+// @desc    Update a product
+// @access  Private
+
+router.put('/all/:id', async (req,res) => {
+
+     const {name,description,quantity,price} = req.body
+ 
+     // Build the product object
+ 
+     const updatedProduct = {}
+     if(name) updatedProduct.name = name
+     if(description) updatedProduct.description = description
+     if(quantity) updatedProduct.quantity = quantity
+     if(price) updatedProduct.price = price
+ 
+     try {
+ 
+          let product = await Product.findById(req.params.id)
+ 
+          // Check if the products exists in the database
+          if(!product) 
+                 return res.status(404).send('Product not found !')
+ 
+                 
+         // Update the product
+          product = await Product.findByIdAndUpdate(req.params.id,
+             {$set : updatedProduct},
+             {new: true})
+ 
+          res.json(product)
+ 
+     } catch (err) {
+          res.status(500).send('Server Error')
+     } 
+ })
 
 
 

@@ -1,11 +1,14 @@
 import React ,{useContext} from 'react'
 import CartContext from '../../context/cart/CartContext'
-
+import ProductContext from '../../context/product/ProductContext'
 
  const CartItem = ({item}) => {
 
     const cartContext = useContext(CartContext)
     const {deleteCartItem} = cartContext
+
+    const productContext = useContext(ProductContext)
+    const {updateQuantityProduct} = productContext
 
     return (
         <>
@@ -35,7 +38,9 @@ import CartContext from '../../context/cart/CartContext'
                                               <button className="btn btn-danger" onClick={() => {
                                                   deleteCartItem(item._id)
                                               }}><i class="fas fa-trash" /></button>
-                                              <button className="btn btn-success"><i class="far fa-check-circle"/></button>
+                                              <button className="btn btn-success" onClick={() => {
+                                                  updateQuantityProduct(item.product._id,item.quantity)
+                                              }}><i class="far fa-check-circle"/></button>
                                                </div>
                                      </div>
                                  </div>
