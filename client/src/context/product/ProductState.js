@@ -22,8 +22,8 @@ GET_ALL_PRODUCTS
  const ProductState = props => {
 
     const initialState = {
-        allProducts: null,
-        products: null,
+        allProducts: [],
+        products: [],
         filtered: null,
         current: null,
         error: null,
@@ -151,7 +151,7 @@ const updateQuantityProduct = async (id,quantity) => {
         }
 
         const res = await axios.put(`/api/products/all/${id}`,data)
-        
+
         dispatch({
             type: UPDATE_PRODUCT,
             payload: res.data
